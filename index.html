@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Podsita™ - The Modular Building System</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
+        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; margin-bottom: 5px; }
+        .tagline { color: #7f8c8d; font-style: italic; margin-bottom: 30px; }
+        .section { margin-bottom: 25px; padding: 15px; background: #f8f9fa; border-radius: 5px; }
+        .section h3 { margin-top: 0; color: #34495e; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        .checkbox-group { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; }
+        .checkbox-item { display: flex; align-items: center; }
+        .checkbox-item input { width: auto; margin-right: 8px; margin-bottom: 0; }
+        .price-highlight { background: #e8f5e8; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .total { font-size: 1.2em; font-weight: bold; color: #27ae60; }
+        .comparison { background: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; }
+        button { background: #3498db; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #2980b9; }
+        .timeline { background: #e3f2fd; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .faq-section { text-align: center; margin: 20px 0; }
+        .contact-info { background: #f0f0f0; padding: 15px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Podsita™</h1>
+        <p class="tagline">the modular building system</p>
+        
+        <form id="podsitaForm">
+            <div class="section">
+                <h3>Connectivity Setup</h3>
+                <label>WiFi Name:</label>
+                <input type="text" name="wifi_name" required>
+                
+                <label>WiFi Password:</label>
+                <input type="password" name="wifi_password" required>
+                
+                <label>WiFi Doorlock PinCode:</label>
+                <input type="text" name="doorlock_pin" required>
+                
+                <label>WhatThreeWords Address (format: ///wordone-wordtwo-wordthree):</label>
+                <input type="text" name="w3w_address" pattern="^///[a-z]+-[a-z]+-[a-z]+$" placeholder="///example-word-location" required>
+            </div>
+
+            <div class="section">
+                <h3>Climate Control</h3>
+                <div class="checkbox-item">
+                    <input type="checkbox" name="aircon_sita" id="aircon">
+                    <label for="aircon">Aircon-sita: Do you need air conditioning?</label>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Smartsita Package</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="smart_wifi_locks" id="smart1">
+                        <label for="smart1">WiFi door locks</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="smart_water_sensor" id="smart2">
+                        <label for="smart2">Automatic water fill sensor</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Offgrid-sita Package</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="offgrid_35kw_solar" id="offgrid1">
+                        <label for="offgrid1">35kw solar (all day with aircon running! and room to spare, includes extra solar panels)</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="offgrid_tbd1" id="offgrid2">
+                        <label for="offgrid2">TBD</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="offgrid_tbd2" id="offgrid3">
+                        <label for="offgrid3">TBD</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Cabinet Style</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="radio" name="cabinet_style" value="rustic" id="cab1">
+                        <label for="cab1">Rustic</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="cabinet_style" value="modern" id="cab2">
+                        <label for="cab2">Modern</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="cabinet_style" value="classic" id="cab3">
+                        <label for="cab3">Classic</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Cabinet Shower Style</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="radio" name="shower_style" value="artdeco" id="shower1">
+                        <label for="shower1">ArtDeco</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="shower_style" value="balla" id="shower2">
+                        <label for="shower2">The Balla</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="shower_style" value="nevo" id="shower3">
+                        <label for="shower3">The Nevo</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Solar System</h3>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="radio" name="solar_system" value="standard" id="solar1" data-price="0">
+                        <label for="solar1">SolaStandard (10am-8pm run time, good for basic usage, can't run the AC) +$0 USD</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="solar_system" value="delux" id="solar2" data-price="5000">
+                        <label for="solar2">Soladelux (9am-12pm, 3 powerful batteries, can run ac for 5 hours at night) +$5k USD</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="radio" name="solar_system" value="premium" id="solar3" data-price="10000">
+                        <label for="solar3">SolaPremium (24 hours 💪 12 hours of AC, can run a fridge, great if want to use lots of electricity) +$10k USD</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <h3>Project Timeline</h3>
+                <p><strong>Fulfillment (if not in stock):</strong> 2 months (50% deposit before order is required)</p>
+                <p><strong>Delivery:</strong> 1 day</p>
+                <p><strong>Base Podsita install:</strong> 7 days (Podsita 100% payment due)</p>
+                <p><strong>Painting and aircon:</strong> 14 days</p>
+                <p><strong>Custom features:</strong> Talk to our sales team at sales@podsita.com</p>
+                
+                <h4>Order Status Flow:</h4>
+                <p>Onsite → Design spec → Delivery (1 day) → Painting/Solar/Aircon (7 days)</p>
+            </div>
+
+            <div class="price-highlight">
+                <div class="comparison">
+                    <p><strong>Comparison to Standard Construction House:</strong> $60k USD</p>
+                </div>
+                <div class="total">
+                    <p>Your Total: $<span id="baseTotal">50,000</span> USD</p>
+                </div>
+            </div>
+
+            <div class="section">
+                <h3>Warranty Options</h3>
+                <div class="checkbox-item">
+                    <input type="checkbox" name="warranty_selected" id="warranty">
+                    <label for="warranty">Podsita "you break it we fix it" repair guarantee</label>
+                </div>
+                <p style="margin-top: 10px; font-size: 14px;">Includes yearly maintenance, preventative roof resealing, paint touchups, doors, windows repair. We come out once yearly for a comprehensive 10 point inspection and provide peace of mind for your investment - we do the work so you don't have to. For damage over $500 USD we will provide a free estimate and give you simple options and make it happen.</p>
+                
+                <label>Select Guarantee Length:</label>
+                <select name="warranty_length" id="warrantyLength">
+                    <option value="">No warranty</option>
+                    <option value="3_years" data-percent="5">3 years +5%</option>
+                    <option value="5_years" data-percent="10" selected>5 years +10%</option>
+                    <option value="10_years" data-percent="15">10 years +15%</option>
+                </select>
+                
+                <div class="total" style="margin-top: 15px;">
+                    <p>Total with Warranty: $<span id="finalTotal">50,000</span> USD</p>
+                </div>
+            </div>
+
+            <div class="faq-section">
+                <h3>Got Questions?</h3>
+                <p>See our FAQ or call us</p>
+                
+                <h4>Want a call back?</h4>
+                <label>Enter your phone number and we'll give you a call:</label>
+                <input type="tel" name="callback_phone" placeholder="+1234567890">
+                
+                <h4>Ready to order and need a consultation?</h4>
+                <p>Book in 5 seconds on our calendar now!</p>
+                <!-- Calendly inline widget begin -->
+                <div class="calendly-inline-widget" data-url="https://calendly.com/d/cws8-4vg-hp2" style="min-width:320px;height:700px;"></div>
+                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                <!-- Calendly inline widget end -->
+            </div>
+
+            <div class="contact-info">
+                <h3>Payment Terms</h3>
+                <p>All costs include tax and are due upon receipt</p>
+            </div>
+
+            <button type="submit">Submit Order</button>
+        </form>
+    </div>
+
+    <script>
+        const form = document.getElementById('podsitaForm');
+        const basePrice = 50000;
+        
+        function updateTotal() {
+            let total = basePrice;
+            
+            // Add solar system price
+            const solarRadios = document.querySelectorAll('input[name="solar_system"]:checked');
+            if (solarRadios.length > 0) {
+                total += parseInt(solarRadios[0].dataset.price || 0);
+            }
+            
+            document.getElementById('baseTotal').textContent = total.toLocaleString();
+            
+            // Calculate warranty
+            const warrantyCheckbox = document.querySelector('input[name="warranty_selected"]');
+            const warrantySelect = document.getElementById('warrantyLength');
+            let finalTotal = total;
+            
+            if (warrantyCheckbox.checked && warrantySelect.value) {
+                const percent = parseInt(warrantySelect.options[warrantySelect.selectedIndex].dataset.percent || 0);
+                finalTotal = total + (total * percent / 100);
+            }
+            
+            document.getElementById('finalTotal').textContent = finalTotal.toLocaleString();
+        }
+        
+        // Update totals when solar system changes
+        document.querySelectorAll('input[name="solar_system"]').forEach(radio => {
+            radio.addEventListener('change', updateTotal);
+        });
+        
+        // Update totals when warranty changes
+        document.querySelector('input[name="warranty_selected"]').addEventListener('change', updateTotal);
+        document.getElementById('warrantyLength').addEventListener('change', updateTotal);
+        
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(form);
+            const params = new URLSearchParams();
+            
+            for (let [key, value] of formData.entries()) {
+                params.append(key, value);
+            }
+            
+            // Add calculated totals
+            params.append('base_total', document.getElementById('baseTotal').textContent.replace(',', ''));
+            params.append('final_total', document.getElementById('finalTotal').textContent.replace(',', ''));
+            
+            fetch('/customer_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: params.toString()
+            }).then(response => {
+                if (response.ok) {
+                    alert('Order submitted successfully!');
+                } else {
+                    alert('Error submitting order. Please try again.');
+                }
+            }).catch(error => {
+                alert('Error submitting order: ' + error.message);
+            });
+        });
+        
+        // Initialize total calculation
+        updateTotal();
+    </script>
+</body>
+</html>
