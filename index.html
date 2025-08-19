@@ -28,10 +28,59 @@
 </head>
 <body>
     <div class="container">
-        <h1>Podsita™</h1>
-        <p class="tagline">the modular building system</p>
+        <div class="hero-section" style="text-align: center; margin-bottom: 30px;">
+            <img src="./podsita_v1.png" alt="Podsita Modular Building" style="width: 100%; min-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
+            <h1>Podsita™</h1>
+            <p class="tagline">the modular building system</p>
+        </div>
+
+        <div class="marketing-copy" style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin-bottom: 30px;">
+            <h2 style="color: #2c3e50; margin-top: 0;">Ready to Live in Todos Santos in Under 7 Days?</h2>
+            <h3 style="color: #e74c3c;">PODSITA - Your Complete Off-Grid Home Solution</h3>
+            <p style="font-size: 1.1em; font-weight: bold; color: #27ae60;">20' x 9' Modular Prefab Home - $50,000 USD</p>
+            
+            <h4>What's Included:</h4>
+            <ul>
+                <li>Premium air conditioning for Baja heat</li>
+                <li>4x 600W solar panel system + expandable battery</li>
+                <li>Blazing-fast Starlink internet with WiFi boosters (via StarMex partnership)</li>
+                <li>450L water tank + automated delivery system</li>
+                <li>Solar hot water heater</li>
+                <li>LED lighting throughout</li>
+                <li>Full shower and wash facilities</li>
+                <li>Optional outdoor bathroom</li>
+            </ul>
+
+            <h4 style="color: #27ae60;">Your Savings: $12,800+</h4>
+            <ul>
+                <li>Solar installation: $11,000</li>
+                <li>Internet setup: $1,250</li>
+                <li>Water tank install: $350</li>
+                <li>AC installation: $200</li>
+            </ul>
+
+            <h4>Upgrade Options:</h4>
+            <ul>
+                <li><strong>Smart-Sita Bundle</strong> - Advanced automation</li>
+                <li><strong>Secu-Sita Bundle</strong> - 4-camera security system</li>
+                <li><strong>Home-Sita Solution</strong> - Complete bathroom with septic
+                    <ul><li>Pod-Septic system saves $1,000+ vs concrete (plastic, crack-resistant, easy install/repair)</li></ul>
+                </li>
+            </ul>
+
+            <h4 style="color: #3498db;">Why Choose Podsita?</h4>
+            <p>Direct sourcing = maximum savings passed to you. Local partnerships = thousands saved on installation.</p>
+            <p style="font-style: italic; color: #7f8c8d;">Ready to go off-grid in paradise?</p>
+        </div>
         
         <form id="podsitaForm">
+            <div class="section">
+                <h3>Quantity</h3>
+                <label>Number of Podsitas:</label>
+                <input type="number" name="quantity" id="quantity" min="1" value="1" required>
+                <p style="font-size: 14px; color: #666; margin-top: 5px;">Base price: $30k per Podsita + $20k for extras</p>
+            </div>
+
             <div class="section">
                 <h3>Connectivity Setup</h3>
                 <label>WiFi Name:</label>
@@ -43,8 +92,8 @@
                 <label>WiFi Doorlock PinCode:</label>
                 <input type="text" name="doorlock_pin" required>
                 
-                <label>Address :</label>
-                <input type="text" name="address"  placeholder="enter you address here" required>
+                <label>WhatThreeWords Address (format: ///wordone-wordtwo-wordthree):</label>
+                <input type="text" name="w3w_address" pattern="^///[a-z]+-[a-z]+-[a-z]+$" placeholder="///example-word-location" required>
             </div>
 
             <div class="section">
@@ -165,7 +214,7 @@
             <div class="section">
                 <h3>Warranty Options</h3>
                 <div class="checkbox-item">
-                    <input type="checkbox" name="warranty_selected" id="warranty">
+                    <input type="checkbox" name="warranty_selected" id="warranty" checked>
                     <label for="warranty">Podsita "you break it we fix it" repair guarantee</label>
                 </div>
                 <p style="margin-top: 10px; font-size: 14px;">Includes yearly maintenance, preventative roof resealing, paint touchups, doors, windows repair. We come out once yearly for a comprehensive 10 point inspection and provide peace of mind for your investment - we do the work so you don't have to. For damage over $500 USD we will provide a free estimate and give you simple options and make it happen.</p>
@@ -210,10 +259,12 @@
 
     <script>
         const form = document.getElementById('podsitaForm');
-        const basePrice = 50000;
+        const basePrice = 30000;
+        const extrasPrice = 20000;
         
         function updateTotal() {
-            let total = basePrice;
+            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+            let total = (basePrice * quantity) + extrasPrice;
             
             // Add solar system price
             const solarRadios = document.querySelectorAll('input[name="solar_system"]:checked');
@@ -236,7 +287,8 @@
             document.getElementById('finalTotal').textContent = finalTotal.toLocaleString();
         }
         
-        // Update totals when solar system changes
+        // Update totals when quantity changes
+        document.getElementById('quantity').addEventListener('input', updateTotal);
         document.querySelectorAll('input[name="solar_system"]').forEach(radio => {
             radio.addEventListener('change', updateTotal);
         });
