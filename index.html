@@ -5,256 +5,644 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Podsita™ - The Modular Building System</title>
     <style>
-        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; background: #f5f5f5; }
-        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        h1 { color: #2c3e50; margin-bottom: 5px; }
-        .tagline { color: #7f8c8d; font-style: italic; margin-bottom: 30px; }
-        .section { margin-bottom: 25px; padding: 15px; background: #f8f9fa; border-radius: 5px; }
-        .section h3 { margin-top: 0; color: #34495e; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input, select { width: 100%; padding: 8px; margin-bottom: 10px; border: 1px solid #ddd; border-radius: 4px; }
-        .checkbox-group { display: flex; flex-wrap: wrap; gap: 15px; margin-top: 10px; }
-        .checkbox-item { display: flex; align-items: center; }
-        .checkbox-item input { width: auto; margin-right: 8px; margin-bottom: 0; }
-        .price-highlight { background: #e8f5e8; padding: 15px; border-radius: 5px; margin: 15px 0; }
-        .total { font-size: 1.2em; font-weight: bold; color: #27ae60; }
-        .comparison { background: #fff3cd; padding: 10px; border-radius: 5px; margin: 10px 0; }
-        button { background: #3498db; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
-        button:hover { background: #2980b9; }
-        .timeline { background: #e3f2fd; padding: 15px; border-radius: 5px; margin: 15px 0; }
-        .faq-section { text-align: center; margin: 20px 0; }
-        .contact-info { background: #f0f0f0; padding: 15px; border-radius: 5px; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            line-height: 1.6;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: #333;
+        }
+        
+        .container { 
+            max-width: 900px;
+            margin: 0 auto;
+            background: white; 
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-section {
+            position: relative;
+            text-align: center;
+            background: linear-gradient(45deg, #f093fb 0%, #f5576c 100%);
+            padding: 60px 30px;
+            color: white;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="white" opacity="0.1"/><circle cx="75" cy="75" r="1" fill="white" opacity="0.1"/><circle cx="50" cy="10" r="1" fill="white" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        h1 { 
+            font-size: 4rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            letter-spacing: -2px;
+        }
+        
+        .tagline { 
+            font-size: 1.4rem;
+            opacity: 0.9;
+            font-weight: 300;
+            margin-bottom: 30px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .hero-image {
+            width: 100%;
+            height: 300px;
+            background: linear-gradient(45deg, #4facfe 0%, #00f2fe 100%);
+            border-radius: 15px;
+            margin: 30px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+            border: 3px solid rgba(255,255,255,0.3);
+        }
+        
+        .marketing-copy {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px;
+            position: relative;
+        }
+        
+        .marketing-copy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 60"><defs><pattern id="hexagons" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse"><polygon points="30,2 50,17 50,43 30,58 10,43 10,17" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23hexagons)"/></svg>');
+        }
+        
+        .marketing-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .price-badge {
+            display: inline-block;
+            background: #27ae60;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin: 20px 0;
+            box-shadow: 0 8px 25px rgba(39, 174, 96, 0.3);
+        }
+        
+        .savings-highlight {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .form-container {
+            padding: 40px;
+        }
+        
+        .section { 
+            margin-bottom: 35px;
+            padding: 25px;
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        .section h3 { 
+            margin-top: 0;
+            color: #2c3e50;
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+        
+        .section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: #e74c3c;
+        }
+        
+        label { 
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #34495e;
+        }
+        
+        input, select { 
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .checkbox-group { 
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .checkbox-item { 
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid #e1e8ed;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .checkbox-item:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.1);
+        }
+        
+        .checkbox-item input { 
+            width: auto;
+            margin-right: 12px;
+            margin-bottom: 0;
+            transform: scale(1.2);
+        }
+        
+        .checkbox-item input:checked + label,
+        .checkbox-item:has(input:checked) {
+            color: #3498db;
+            font-weight: bold;
+        }
+        
+        .checkbox-item:has(input:checked) {
+            border-color: #3498db;
+            background: linear-gradient(145deg, #ebf3fd, #d1ecf1);
+        }
+        
+        .price-highlight { 
+            background: linear-gradient(145deg, #d5f4e6, #a8e6cf);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 2px solid #27ae60;
+            position: relative;
+        }
+        
+        .price-highlight::before {
+            content: '💰';
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            font-size: 2rem;
+            background: white;
+            padding: 10px;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .total { 
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #27ae60;
+            text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .comparison { 
+            background: linear-gradient(145deg, #fff3cd, #ffeaa7);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 5px solid #f39c12;
+            font-weight: 600;
+        }
+        
+        button { 
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 18px 40px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            font-weight: bold;
+            width: 100%;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        button:hover { 
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.4);
+        }
+        
+        .timeline { 
+            background: linear-gradient(145deg, #e3f2fd, #bbdefb);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border-left: 5px solid #2196f3;
+        }
+        
+        .timeline h3 {
+            color: #1976d2;
+            margin-bottom: 15px;
+        }
+        
+        .timeline p {
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .faq-section { 
+            text-align: center;
+            margin: 30px 0;
+            padding: 30px;
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            border-radius: 15px;
+        }
+        
+        .contact-info { 
+            background: linear-gradient(145deg, #f0f0f0, #e0e0e0);
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        
+        .feature-item {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+        }
+        
+        .feature-item h5 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .calendly-inline-widget {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 8px;
+        }
+        
+        li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 10px;
+                border-radius: 15px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-section {
+                padding: 40px 20px;
+            }
+            
+            .marketing-copy, .form-container {
+                padding: 25px;
+            }
+            
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="hero-section" style="text-align: center; margin-bottom: 30px;">
-            <img src="./podsita_v1.png" alt="Podsita Modular Building" style="width: 100%; min-height: 400px; object-fit: cover; border-radius: 8px; margin-bottom: 20px;">
-            <h1>Podsita™</h1>
-            <p class="tagline">the modular building system</p>
+        <div class="hero-section">
+            <div class="hero-content">
+                <h1>Podsita™</h1>
+                <p class="tagline">the modular building system</p>
+                <img src="./podsita_advert_v1_1.png" alt="Podsita Modular Building" style="width: 100%; min-height: 400px; object-fit: cover; border-radius: 15px; border: 3px solid rgba(255,255,255,0.3); box-shadow: 0 15px 40px rgba(0,0,0,0.2);" />
+            </div>
         </div>
 
-        <div class="marketing-copy" style="background: #f8f9fa; padding: 25px; border-radius: 8px; margin-bottom: 30px;">
-            <h2 style="color: #2c3e50; margin-top: 0;">Ready to Live in Todos Santos in Under 7 Days?</h2>
-            <h3 style="color: #e74c3c;">PODSITA - Your Complete Off-Grid Home Solution</h3>
-            <p style="font-size: 1.1em; font-weight: bold; color: #27ae60;">20' x 9' Modular Prefab Home - $50,000 USD</p>
-            
-            <h4>What's Included:</h4>
-            <ul>
-                <li>Premium air conditioning for Baja heat</li>
-                <li>4x 600W solar panel system + expandable battery</li>
-                <li>Blazing-fast Starlink internet with WiFi boosters (via StarMex partnership)</li>
-                <li>450L water tank + automated delivery system</li>
-                <li>Solar hot water heater</li>
-                <li>LED lighting throughout</li>
-                <li>Full shower and wash facilities</li>
-                <li>Optional outdoor bathroom</li>
-            </ul>
+        <div class="marketing-copy">
+            <div class="marketing-content">
+                <h2 style="margin-top: 0; font-size: 2.2rem;">Ready to Live in Todos Santos in Under 7 Days?</h2>
+                <h3 style="color: #f1c40f; font-size: 1.8rem;">PODSITA - Your Complete Off-Grid Home Solution</h3>
+                <div class="price-badge">20' x 9' Modular Prefab Home - $50,000 USD</div>
+                
+                <div class="savings-highlight">
+                    <h4 style="color: #f1c40f; margin-bottom: 15px;">Your Savings: $12,800+</h4>
+                    <div class="feature-grid">
+                        <div class="feature-item">
+                            <h5>Solar Installation</h5>
+                            <p>$11,000 saved</p>
+                        </div>
+                        <div class="feature-item">
+                            <h5>Internet Setup</h5>
+                            <p>$1,250 saved</p>
+                        </div>
+                        <div class="feature-item">
+                            <h5>Water Tank Install</h5>
+                            <p>$350 saved</p>
+                        </div>
+                        <div class="feature-item">
+                            <h5>AC Installation</h5>
+                            <p>$200 saved</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <h4>What's Included:</h4>
+                <ul>
+                    <li>Premium air conditioning for Baja heat</li>
+                    <li>4x 600W solar panel system + expandable battery</li>
+                    <li>Blazing-fast Starlink internet with WiFi boosters (via StarMex partnership)</li>
+                    <li>450L water tank + automated delivery system</li>
+                    <li>Solar hot water heater</li>
+                    <li>LED lighting throughout</li>
+                    <li>Full shower and wash facilities</li>
+                    <li>Optional outdoor bathroom</li>
+                </ul>
 
-            <h4 style="color: #27ae60;">Your Savings: $12,800+</h4>
-            <ul>
-                <li>Solar installation: $11,000</li>
-                <li>Internet setup: $1,250</li>
-                <li>Water tank install: $350</li>
-                <li>AC installation: $200</li>
-            </ul>
+                <h4>Upgrade Options:</h4>
+                <ul>
+                    <li><strong>Smart-Sita Bundle</strong> - Advanced automation</li>
+                    <li><strong>Secu-Sita Bundle</strong> - 4-camera security system</li>
+                    <li><strong>Home-Sita Solution</strong> - Complete bathroom with septic
+                        <ul><li>Pod-Septic system saves $1,000+ vs concrete (plastic, crack-resistant, easy install/repair)</li></ul>
+                    </li>
+                </ul>
 
-            <h4>Upgrade Options:</h4>
-            <ul>
-                <li><strong>Smart-Sita Bundle</strong> - Advanced automation</li>
-                <li><strong>Secu-Sita Bundle</strong> - 4-camera security system</li>
-                <li><strong>Home-Sita Solution</strong> - Complete bathroom with septic
-                    <ul><li>Pod-Septic system saves $1,000+ vs concrete (plastic, crack-resistant, easy install/repair)</li></ul>
-                </li>
-            </ul>
-
-            <h4 style="color: #3498db;">Why Choose Podsita?</h4>
-            <p>Direct sourcing = maximum savings passed to you. Local partnerships = thousands saved on installation.</p>
-            <p style="font-style: italic; color: #7f8c8d;">Ready to go off-grid in paradise?</p>
+                <h4 style="color: #3498db;">Why Choose Podsita?</h4>
+                <p>Direct sourcing = maximum savings passed to you. Local partnerships = thousands saved on installation.</p>
+                <p style="font-style: italic; color: #ecf0f1;">Ready to go off-grid in paradise?</p>
+            </div>
         </div>
         
-        <form id="podsitaForm">
-            <div class="section">
-                <h3>Quantity</h3>
-                <label>Number of Podsitas:</label>
-                <input type="number" name="quantity" id="quantity" min="1" value="1" required>
-                <p style="font-size: 14px; color: #666; margin-top: 5px;">Base price: $30k per Podsita + $20k for extras</p>
-            </div>
-
-            <div class="section">
-                <h3>Connectivity Setup</h3>
-                <label>WiFi Name:</label>
-                <input type="text" name="wifi_name" required>
-                
-                <label>WiFi Password:</label>
-                <input type="password" name="wifi_password" required>
-                
-                <label>WiFi Doorlock PinCode:</label>
-                <input type="text" name="doorlock_pin" required>
-                
-                <label>WhatThreeWords Address (format: ///wordone-wordtwo-wordthree):</label>
-                <input type="text" name="w3w_address" pattern="^///[a-z]+-[a-z]+-[a-z]+$" placeholder="///example-word-location" required>
-            </div>
-
-            <div class="section">
-                <h3>Climate Control</h3>
-                <div class="checkbox-item">
-                    <input type="checkbox" name="aircon_sita" id="aircon">
-                    <label for="aircon">Aircon-sita: Do you need air conditioning?</label>
+        <div class="form-container">
+            <form id="podsitaForm">
+                <div class="section">
+                    <h3>Quantity</h3>
+                    <label>Number of Podsitas:</label>
+                    <input type="number" name="quantity" id="quantity" min="1" value="1" required>
+                    <p style="font-size: 14px; color: #666; margin-top: 5px;">Base price: $30k per Podsita + $20k for extras</p>
                 </div>
-            </div>
 
-            <div class="section">
-                <h3>Smartsita Package</h3>
-                <div class="checkbox-group">
+
+                <div class="section">
+                    <h3>Climate Control</h3>
                     <div class="checkbox-item">
-                        <input type="checkbox" name="smart_wifi_locks" id="smart1">
-                        <label for="smart1">WiFi door locks</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" name="smart_water_sensor" id="smart2">
-                        <label for="smart2">Automatic water fill sensor</label>
+                        <input type="checkbox" name="aircon_sita" id="aircon">
+                        <label for="aircon">Aircon-sita: Do you need air conditioning?</label>
                     </div>
                 </div>
-            </div>
 
-            <div class="section">
-                <h3>Offgrid-sita Package</h3>
-                <div class="checkbox-group">
-                    <div class="checkbox-item">
-                        <input type="checkbox" name="offgrid_35kw_solar" id="offgrid1">
-                        <label for="offgrid1">35kw solar (all day with aircon running! and room to spare, includes extra solar panels)</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" name="offgrid_tbd1" id="offgrid2">
-                        <label for="offgrid2">TBD</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="checkbox" name="offgrid_tbd2" id="offgrid3">
-                        <label for="offgrid3">TBD</label>
+                <div class="section">
+                    <h3>Smartsita Package</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="smart_wifi_locks" id="smart1">
+                            <label for="smart1">WiFi door locks</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="smart_water_sensor" id="smart2">
+                            <label for="smart2">Automatic water fill sensor</label>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="section">
-                <h3>Cabinet Style</h3>
-                <div class="checkbox-group">
-                    <div class="checkbox-item">
-                        <input type="radio" name="cabinet_style" value="rustic" id="cab1">
-                        <label for="cab1">Rustic</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="radio" name="cabinet_style" value="modern" id="cab2">
-                        <label for="cab2">Modern</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="radio" name="cabinet_style" value="classic" id="cab3">
-                        <label for="cab3">Classic</label>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <h3>Cabinet Shower Style</h3>
-                <div class="checkbox-group">
-                    <div class="checkbox-item">
-                        <input type="radio" name="shower_style" value="artdeco" id="shower1">
-                        <label for="shower1">ArtDeco</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="radio" name="shower_style" value="balla" id="shower2">
-                        <label for="shower2">The Balla</label>
-                    </div>
-                    <div class="checkbox-item">
-                        <input type="radio" name="shower_style" value="nevo" id="shower3">
-                        <label for="shower3">The Nevo</label>
+                <div class="section">
+                    <h3>Offgrid-sita Package</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="offgrid_35kw_solar" id="offgrid1">
+                            <label for="offgrid1">35kw solar (all day with aircon running! and room to spare, includes extra solar panels)</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="offgrid_tbd1" id="offgrid2">
+                            <label for="offgrid2">TBD</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" name="offgrid_tbd2" id="offgrid3">
+                            <label for="offgrid3">TBD</label>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="section">
-                <h3>Solar System</h3>
-                <div class="checkbox-group">
-                    <div class="checkbox-item">
-                        <input type="radio" name="solar_system" value="standard" id="solar1" data-price="0">
-                        <label for="solar1">SolaStandard (10am-8pm run time, good for basic usage, can't run the AC) +$0 USD</label>
+                <div class="section">
+                    <h3>Cabinet Style</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" name="cabinet_style" value="rustic" id="cab1">
+                            <label for="cab1">Rustic</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" name="cabinet_style" value="modern" id="cab2">
+                            <label for="cab2">Modern</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" name="cabinet_style" value="classic" id="cab3">
+                            <label for="cab3">Classic</label>
+                        </div>
                     </div>
-                    <div class="checkbox-item">
-                        <input type="radio" name="solar_system" value="delux" id="solar2" data-price="5000">
-                        <label for="solar2">Soladelux (9am-12pm, 3 powerful batteries, can run ac for 5 hours at night) +$5k USD</label>
+                </div>
+
+                <div class="section">
+                    <h3>Cabinet Shower Style</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" name="shower_style" value="artdeco" id="shower1">
+                            <label for="shower1">ArtDeco</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" name="shower_style" value="balla" id="shower2">
+                            <label for="shower2">The Balla</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" name="shower_style" value="nevo" id="shower3">
+                            <label for="shower3">The Nevo</label>
+                        </div>
                     </div>
-                    <div class="checkbox-item">
-                        <input type="radio" name="solar_system" value="premium" id="solar3" data-price="10000">
-                        <label for="solar3">SolaPremium (24 hours 💪 12 hours of AC, can run a fridge, great if want to use lots of electricity) +$10k USD</label>
+                </div>
+
+                <div class="section">
+                    <h3>Solar System</h3>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="radio" name="solar_system" value="standard" id="solar1" data-price="0">
+                            <label for="solar1">SolaStandard (10am-8pm run time, good for basic usage, can't run the AC) +$0 USD</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" name="solar_system" value="delux" id="solar2" data-price="5000">
+                            <label for="solar2">Soladelux (9am-12pm, 3 powerful batteries, can run ac for 5 hours at night) +$5k USD</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="radio" name="solar_system" value="premium" id="solar3" data-price="10000">
+                            <label for="solar3">SolaPremium (24 hours 💪 12 hours of AC, can run a fridge, great if want to use lots of electricity) +$10k USD</label>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="timeline">
-                <h3>Project Timeline</h3>
-                <p><strong>Fulfillment (if not in stock):</strong> 2 months (50% deposit before order is required)</p>
-                <p><strong>Delivery:</strong> 1 day</p>
-                <p><strong>Base Podsita install:</strong> 7 days (Podsita 100% payment due)</p>
-                <p><strong>Painting and aircon:</strong> 14 days</p>
-                <p><strong>Custom features:</strong> Talk to our sales team at sales@podsita.com</p>
-                
-                <h4>Order Status Flow:</h4>
-                <p>Onsite → Design spec → Delivery (1 day) → Painting/Solar/Aircon (7 days)</p>
-            </div>
-
-            <div class="price-highlight">
-                <div class="comparison">
-                    <p><strong>Comparison to Standard Construction House:</strong> $60k USD</p>
+                <div class="timeline">
+                    <h3>Project Timeline</h3>
+                    <p><strong>Fulfillment (if not in stock):</strong> 2 months (50% deposit before order is required)</p>
+                    <p><strong>Delivery:</strong> 1 day</p>
+                    <p><strong>Base Podsita install:</strong> 7 days (Podsita 100% payment due)</p>
+                    <p><strong>Painting and aircon:</strong> 14 days</p>
+                    <p><strong>Custom features:</strong> Talk to our sales team at sales@podsita.com</p>
+                    
+                    <h4>Order Status Flow:</h4>
+                    <p>Onsite → Design spec → Delivery (1 day) → Painting/Solar/Aircon (7 days)</p>
                 </div>
-                <div class="total">
-                    <p>Your Total: $<span id="baseTotal">50,000</span> USD</p>
+
+                <div class="section">
+                    <h3>Connectivity Setup</h3>
+                    <label>WiFi Name:</label>
+                    <input type="text" name="wifi_name" required>
+                    
+                    <label>WiFi Password:</label>
+                    <input type="text" name="wifi_password" required>
+                    
+                    <label>WiFi Doorlock PinCode:</label>
+                    <input type="text" name="doorlock_pin" required>
+                    
+                    <label> Address :</label>
+                    <input type="text" name="address"  placeholder="enter your address here" required>
                 </div>
-            </div>
-
-            <div class="section">
-                <h3>Warranty Options</h3>
-                <div class="checkbox-item">
-                    <input type="checkbox" name="warranty_selected" id="warranty" checked>
-                    <label for="warranty">Podsita "you break it we fix it" repair guarantee</label>
+                <div class="price-highlight">
+                    <div class="comparison">
+                        <p><strong>Comparison to Standard Construction House:</strong> $60k USD</p>
+                    </div>
+                    <div class="total">
+                        <p>Your Total: $<span id="baseTotal">50,000</span> USD</p>
+                    </div>
                 </div>
-                <p style="margin-top: 10px; font-size: 14px;">Includes yearly maintenance, preventative roof resealing, paint touchups, doors, windows repair. We come out once yearly for a comprehensive 10 point inspection and provide peace of mind for your investment - we do the work so you don't have to. For damage over $500 USD we will provide a free estimate and give you simple options and make it happen.</p>
-                
-                <label>Select Guarantee Length:</label>
-                <select name="warranty_length" id="warrantyLength">
-                    <option value="">No warranty</option>
-                    <option value="3_years" data-percent="5">3 years +5%</option>
-                    <option value="5_years" data-percent="10" selected>5 years +10%</option>
-                    <option value="10_years" data-percent="15">10 years +15%</option>
-                </select>
-                
-                <div class="total" style="margin-top: 15px;">
-                    <p>Total with Warranty: $<span id="finalTotal">50,000</span> USD</p>
+
+                <div class="section">
+                    <h3>Warranty Options</h3>
+                    <div class="checkbox-item">
+                        <input type="checkbox" name="warranty_selected" id="warranty" checked>
+                        <label for="warranty">Podsita "you break it we fix it" repair guarantee</label>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 14px;">Includes yearly maintenance, preventative roof resealing, paint touchups, doors, windows repair. We come out once yearly for a comprehensive 10 point inspection and provide peace of mind for your investment - we do the work so you don't have to. For damage over $500 USD we will provide a free estimate and give you simple options and make it happen.</p>
+                    
+                    <label>Select Guarantee Length:</label>
+                    <select name="warranty_length" id="warrantyLength">
+                        <option value="">No warranty</option>
+                        <option value="3_years" data-percent="5">3 years +5%</option>
+                        <option value="5_years" data-percent="10" selected>5 years +10%</option>
+                        <option value="10_years" data-percent="15">10 years +15%</option>
+                    </select>
+                    
+                    <div class="total" style="margin-top: 15px;">
+                        <p>Total with Warranty: $<span id="finalTotal">50,000</span> USD</p>
+                    </div>
                 </div>
-            </div>
 
-            <div class="faq-section">
-                <h3>Got Questions?</h3>
-                <p>See our FAQ or call us</p>
-                
-                <h4>Want a call back?</h4>
-                <label>Enter your phone number and we'll give you a call:</label>
-                <input type="tel" name="callback_phone" placeholder="+1234567890">
-                
-                <h4>Ready to order and need a consultation?</h4>
-                <p>Book in 5 seconds on our calendar now!</p>
-                <!-- Calendly inline widget begin -->
-                <div class="calendly-inline-widget" data-url="https://calendly.com/d/cws8-4vg-hp2" style="min-width:320px;height:700px;"></div>
-                <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
-                <!-- Calendly inline widget end -->
-            </div>
+                <div class="faq-section">
+                    <h3>Got Questions?</h3>
+                    <p>See our FAQ or call us</p>
+                    
+                    <h4>Want a call back?</h4>
+                    <label>Enter your phone number and we'll give you a call:</label>
+                    <input type="tel" name="callback_phone" placeholder="+1234567890">
+                    
+                    <h4>Ready to order and need a consultation?</h4>
+                    <p>Book in 5 seconds on our calendar now!</p>
+                    <!-- Calendly inline widget begin -->
+                    <div class="calendly-inline-widget" data-url="https://calendly.com/d/cws8-4vg-hp2" style="min-width:320px;height:700px;"></div>
+                    <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+                    <!-- Calendly inline widget end -->
+                </div>
 
-            <div class="contact-info">
-                <h3>Payment Terms</h3>
-                <p>All costs include tax and are due upon receipt</p>
-            </div>
+                <div class="contact-info">
+                    <h3>Payment Terms</h3>
+                    <p>All costs include tax and are due upon receipt</p>
+                </div>
 
-            <button type="submit">Submit Order</button>
-        </form>
+                <button type="submit">Submit Order</button>
+            </form>
+        </div>
     </div>
 
     <script>
